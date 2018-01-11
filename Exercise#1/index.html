@@ -1,0 +1,45 @@
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+<div id="exercise">
+    <!-- 1) Fill the <p> below with your Name and Age - using Interpolation -->
+    <p>VueJS is pretty cool - {{ name }} ({{ age }}) </p>
+    <!-- 2) Output your age, multiplied by 3 -->
+    <p> {{ ageByThree() }} </p>
+    <!-- 3) Call a function to output a random float between 0 and 1 (Math.random()) -->
+    <p> {{ randomNumber }} </p>
+    <!-- 4) Search any image on Google and output it here by binding the "src" attribute -->
+    <div>
+        <img style="width:100px;height:100px" v-bind:src='imageLink'>
+    </div>
+    <!-- 5) Pre-Populate this input with your name (set the "value" attribute) -->
+    <div>
+        <p>
+            {{ inputName }}
+        </p>
+        <input type="text" v-bind:placeholder='defaultValue' v-on:input='changeInput' />
+    </div>
+
+
+    <script>
+        new Vue({
+            el: '#exercise',
+            data: {
+                name: 'Adrian',
+                age: 26,
+                randomNumber: Math.random().toFixed(3),
+                imageLink: 'http://www.readersdigest.ca/wp-content/uploads/2015/11/gourmet-burger.jpg',
+                inputName: 'Vue.js is interesting!',
+                defaultValue: 'Type something here!'
+            },
+            methods: {
+                ageByThree: function () {
+                    return this.age * 3
+                },
+                changeInput: function (event) {
+                    this.inputName = event.target.value
+                }
+            }
+        })
+    </script>
+</div>
+

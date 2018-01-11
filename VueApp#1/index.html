@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue.js</title>
+    <script src="vue.js"> </script>
+</head>
+<body>
+    <div id="root1">
+        <input type="text" v-on:input='changeTitle'> 
+        <p> {{ title }} </p>
+    </div>
+
+    <div id="root2"> 
+        <!-- v-once helps to prevent future changes to the title value if it changes elsewhere in the code -->
+        <h1 v-once>{{title}}</h1>  
+        <p> {{ sayHello() }} - <a v-bind:href="link">Google</a>  </p>
+        <!-- by default, passing through an html value will only return the text value... -->
+        <p> {{  finishedLink }}</p>
+        <!-- ...unless 'v-html' is placed in the html element -->
+        <p v-html='finishedLink'> </p>
+    </div>
+
+    <input type="text" value="">
+
+    <script>    
+        new Vue({
+            el: '#root1',
+            data:{
+                title: 'Hello World to Vue.js!!'
+            },
+            methods: {
+                changeTitle: function(event) {
+                    this.title = event.target.value
+                }
+            }
+        })
+
+        new Vue({
+            el: '#root2',
+            data: {
+                title: 'Another Vue',
+                link: 'www.google.com',
+                finishedLink: '<a v-bind:href="link">Google</a> '
+            },
+            methods:{
+                sayHello: () => {
+                    this.title = 'Hello';
+                    return this.title
+                }
+            }
+        })
+    </script>
+</body>
+</html>
