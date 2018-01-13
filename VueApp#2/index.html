@@ -9,11 +9,71 @@
 </head>
 <body>
     <div id="app">
-        <p>{{ title }}</p>
+        <button v-on:click='counter++'>Click Me!</button>
+        <button v-on:click='counter--'>Click Me!</button>
+        <p>{{ counter }}</p>
+        <p> {{ result() }} | {{ output }}</p>
+        <p v-on:mousemove='updateCoordinates'>
+            Coordinates: {{x}} / {{y}}
+            <!-- The dummy function will stop the updateCoordinate function -->
+            <br />
+            <span v-on:mousemove='dummy'> DEAD SPOT </span>
+            <!-- or alternatively use .stop as well -->
+            <br />
+            <span v-on:mousemove.stop='dummy'> DEAD SPOT </span>
+            <br />
+            <!-- keyup functiond are also chainable using the dot notation -->
+        </p>
+            <input type='text' v-on:keyup.enter.space='alertMe'>
+
+        <div>   
+        <!-- An example of a two way binding element -->
+            <input type='text' v-model='name'>
+            <p> {{ name }} </p>
+        </div>
     </div>
     <script>
-        new Vue({
-            
+       new Vue({
+            el: '#app',
+            data: {
+                counter: 0,
+                x: 0,
+                y: 0,
+                name: 'Adrian'
+            },
+            // this will synchronusly run
+            computed:{
+                output: function(){
+                    return this.counter > 5 ? 'Greater than 5' : 'Less than 5'
+                }
+            },
+            // this will run asych and dynamically change an element
+            watch: {
+                counter: function(value){
+                    var vm = this;
+                    setTimeout(function(){
+                        vm.counter = 0;
+                    }, 5000)
+                }
+            },
+            methods: {
+                // increase: function (step, $event) {
+                //     this.counter += step
+                // },
+                result: function(){
+                    return this.counter > 5 ? 'Greater than 5' : 'Less than 5'
+                },
+                updateCoordinates: function (event) {
+                    this.x = event.clientX
+                    this.y = event.clientY
+                },
+                dummy: function () {
+                    event.stopPropagation()
+                },
+                alertMe: function () {
+                    alert('Alert')
+                }
+            }
         })
     </script>
 </body>
