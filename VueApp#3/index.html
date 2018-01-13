@@ -29,6 +29,22 @@
     </div>
 
     <script>    
+       new Vue({
+            el: '#app1',
+            data: {
+                attachRed: false,
+                color: 'green'
+            },
+            computed: {
+                divClasses: function () {
+                    return {
+                        red: this.attachRed,
+                        blue: !this.attachRed
+                    }
+                }
+            }
+        })
+
         new Vue({
             el: '#app2',
             data: {
