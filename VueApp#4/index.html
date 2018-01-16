@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue.js</title>
+    <script src="vue.js"> </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <div id="app">    
+       <p v-if='show'>  You can see me <span>Hello!</span></p>
+       <p v-else> Now you see me! </p>
+       <!-- Template is used as it will not render a DOM element. A good practice for having objects that don't need to always be shown -->
+       <template v-if='show'>   
+           <h1>Heading</h1>
+           <p> Inside a template </p>
+       </template>
+       <!-- 'v-show' will work the same as a template element but will still have a DOM element rendered -->
+       <p v-show='show'> Do you also see me? </p>
+       <button @click="show = !show">Switch</button>
+   </div>
+
+   <div id='app2'>
+        <ul>
+            <li v-for='(ingredient, index) in ingredients' :key='index'>
+                <!--first element is value, the seond being the index value -->
+                {{ ingredient}} ({{ index }})
+            </li>
+            <!-- this will add a value to the ingredients list -->
+            <button @click='ingredients.push("spices")'>
+                Add New
+            </button>
+            <template v-for='(ingredient, index) in ingredients'>
+                <h1>
+                    {{ingredient}}
+                </h1>
+                <p>
+                    {{ index }}
+                </p>
+            </template>
+        </ul>
+        <hr>
+        <ul>
+            <li v-for='person in persons'>
+                <div v-for='(value, key, index) in person'>
+                    {{index + 1}} {{key}}:{{value}}
+                </div>
+            </li>
+        </ul>
+        <hr>
+        <!-- renders a list from 1 to 10 -->
+        <span v-for='n in 10'> {{ n }} </span>
+   </div>    
+
+    <script>    
+       new Vue({
+           el: '#app',
+           data: {
+               show: false
+           }
+       })
+
+       new Vue({
+            el: '#app2',
+            data: {
+                ingredients: ['meat', 'fruit', 'vegetables'],
+                persons: [
+                    { name: 'Adrian', age: 26, color: 'green' },
+                    { name: 'Mandeep', age: 28, color: 'blue' },
+                    { name: 'Lauren', age: 'unknown', color: 'red' }
+                ]
+            }
+        })
+    </script>
+</body>
+</html>
