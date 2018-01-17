@@ -62,11 +62,14 @@
                 Give Up</button>
         </div>
        </section>
-       <section class='row log'>
+       <section class='row log' v-if='turns.length > 0'>
         <div class='small-12 columns'>   
             <ul>    
-                <li>    </li>
-                <li>    </li>
+                <li 
+                    v-for='turn in turns'
+                    :class='{"player-turn" : turn.isPlayer, "monster-turn" : !turn.isPlayer}'> 
+                    {{turn.text}}   
+                </li>
             </ul>
         </div>
        </section>
@@ -75,3 +78,4 @@
     <script src="app.js"></script>
 </body>
 </html>
+                
