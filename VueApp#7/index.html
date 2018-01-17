@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/foundation.min.css">
+    <script src="vue.js"></script>
+    <title></title>
+</head>
+
+<body>
+   <div id="app1">
+       <h1 ref='appHeading'>{{ title }}</h1>
+       <button v-on:click='show' ref='myButton'> 
+           Show Paragraph
+       </button>
+       <p v-if='showParagraph'>  
+        This is not always visbile
+       </p>
+   </div>
+
+   <div id="app2">
+       <h1>{{ title }}</h1>
+       <button @click='onChange'> Change Something in Vue 1</button> 
+   </div>
+
+   <div id="app3">
+       <h1>{{ title }}</h1>
+   </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+                
