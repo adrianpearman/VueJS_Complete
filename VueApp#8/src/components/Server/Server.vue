@@ -15,6 +15,7 @@
   </div>
 </template>
 
+<!-- scooped allows for styling to be applied to a specific component instead of applying it globally -->
 <style scoped>
-  
+
 </style>
